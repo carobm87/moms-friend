@@ -17,6 +17,29 @@ const errorMiddleware = createMiddleware().server(async ({ next }) => {
   }
 });
 
+// Attach the Supabase access token to every server function call from the browser
+// so requireSupabaseAuth middleware can authenticate the user.
+const supabaseAuthClientMiddleware = createMiddleware({ type: "function" }).client(
+  async ({ next }) => {
+    if (typeof window !== "undefined") {
+      try {
+        const { supabase } = await import("./integrations/supabase/client");
+        const { data } = await supabase.auth.getSession();
+        const token = data.session?.access_token;
+        if (token) {
+          return next({
+            headers: { Authorization: `Bearer ${token}` },
+          });
+        }
+      } catch (e) {
+        console.error("[auth client middleware]", e);
+      }
+    }
+    return next();
+  }
+);
+
 export const startInstance = createStart(() => ({
   requestMiddleware: [errorMiddleware],
+  functionMiddleware: [supabaseAuthClientMiddleware],
 }));
