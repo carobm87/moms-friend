@@ -53,8 +53,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Compañera — tu amiga cálida" },
-      { name: "description", content: "Una amiga cálida que te escucha, te aconseja y te ayuda a organizar tu día." },
+      { title: "Mom's Friend" },
+      { name: "description", content: "A warm friend that listens, gives advice, and helps you organize your day. / Una amiga cálida que te escucha, te aconseja y te ayuda a organizar tu día." },
+      { property: "og:title", content: "Mom's Friend" },
+      { name: "twitter:title", content: "Mom's Friend" },
+      { property: "og:description", content: "A warm friend that listens, gives advice, and helps you organize your day. / Una amiga cálida que te escucha, te aconseja y te ayuda a organizar tu día." },
+      { name: "twitter:description", content: "A warm friend that listens, gives advice, and helps you organize your day. / Una amiga cálida que te escucha, te aconseja y te ayuda a organizar tu día." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/hcrCFFwLMXfHvdXg13PTz8MIHRl2/social-images/social-1778264846884-9ADE77DD-598A-46C9-A50E-97BB62A95294.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/hcrCFFwLMXfHvdXg13PTz8MIHRl2/social-images/social-1778264846884-9ADE77DD-598A-46C9-A50E-97BB62A95294.webp" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
